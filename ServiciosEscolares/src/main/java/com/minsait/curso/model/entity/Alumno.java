@@ -1,12 +1,19 @@
 package com.minsait.curso.model.entity;
 
 import java.sql.Date;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +35,7 @@ public class Alumno {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "num_cuenta")
-	private Long num_cuenta;
+	private Long numCuenta;
 	
     /**
      * Representaci&#243;n del nombre del alumno
@@ -56,4 +63,9 @@ public class Alumno {
 	@Column (name = "fecha_ingreso")
 	private Date fechaIngreso;
 	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "num_cuenta")
+	@JsonIgnore
+	@Basic(optional=true)
+	private List<Inscripcion> inscripciones;
 }

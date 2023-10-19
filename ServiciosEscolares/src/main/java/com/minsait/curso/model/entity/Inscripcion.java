@@ -20,28 +20,27 @@ import lombok.Setter;
 @Getter
 @Setter
 /**
- * Representaci&#243;n de la inscrpcion anual de un alumno a la escuela
+ * Representaci&#243;n de la inscrpci&#243;n anual de un alumno a la escuela
  * @author fvelez
  * @version 1.0
  */
 public class Inscripcion {
 
     /**
-     * Representaci&#243;n del periodo de inscrpcion del alumno
+     * Representaci&#243;n del periodo de inscrpci&#243;n del alumno
      */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id_periodo")
-	private long id_periodo;
+	private Long idPeriodo;
 
     /**
-     * Representaci&#243;n del numero de cuenta o identificaci&#243;n del alumno
+     * Representaci&#243;n del n&#250;mero de cuenta o identificaci&#243;n del alumno
      */
 	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "num_cuenta")
-	@Basic(optional=true)
-	@Column (name = "num_cuenta")
-	private Long num_cuenta;
+	@Basic(optional=false)
+	private Alumno alumno;
 	
     /**
      * Representaci&#243;n de la fecha inicial del periodo de inscripci&#243;n
@@ -56,7 +55,7 @@ public class Inscripcion {
 	private Date FechaFinal;
 	
     /**
-     * Representaci&#243;n del estatus de la inscripción: Pendiente, Finalizada o Baja
+     * Representaci&#243;n del estatus de la inscripci&#243;n: Pendiente, Finalizada o Baja
      */
 	@Column (name = "estatus")
 	private String estatus;
