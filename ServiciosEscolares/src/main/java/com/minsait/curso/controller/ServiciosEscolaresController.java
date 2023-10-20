@@ -56,7 +56,7 @@ public class ServiciosEscolaresController {
 	 * @return Registro de la inscripcii&#243;n
 	 */
 	@GetMapping("/{idPeriodo}")
-	public ResponseEntity<?> findById(@PathVariable Long idPeriodo){
+	public ResponseEntity<Inscripcion> findById(@PathVariable Long idPeriodo){
 		Optional<Inscripcion> inscripcion = service.findById(idPeriodo);
 		if (!inscripcion.isPresent())
 			return ResponseEntity.notFound().build();
@@ -69,7 +69,7 @@ public class ServiciosEscolaresController {
 	 * @return Registro de la inscripcii&#243;n
 	 */
 	@GetMapping("/byNumCuenta/{numCuenta}")
-	public ResponseEntity<?> findByNumcuenta(@PathVariable Long numCuenta){
+	public ResponseEntity<Inscripcion> findByNumcuenta(@PathVariable Long numCuenta){
 		Optional<Inscripcion> inscripcion = service.findByNumCuenta(numCuenta);
 		if (!inscripcion.isPresent())
 			return ResponseEntity.notFound().build();
@@ -84,14 +84,17 @@ public class ServiciosEscolaresController {
 	@PostMapping("/create")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Transactional
-	public ResponseEntity<?> create(
+	public ResponseEntity<String> create(
     		@RequestBody Inscripcion inscripcion){
 		try {
 			// Se llama el método para crear el registro del repositorio JPA
-			return new ResponseEntity<Inscripcion>(service.create(inscripcion), HttpStatus.CREATED);
+			Inscripcion inscripcionCreada = service.create(inscripcion);
+			String respuesta = inscripcionCreada.getIdPeriodo() + ": " + inscripcionCreada.getEstatus(); 
+			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
 		}catch(Exception e) {
 			// Se muestra el detalle del error
-			return new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("0: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			
 		}
 		
 	}
@@ -104,7 +107,7 @@ public class ServiciosEscolaresController {
 	 */
 	@PutMapping("/{idPeriodo}")
 	@Transactional
-	public ResponseEntity<?> update(
+	public ResponseEntity<String> update(
     		@PathVariable Long idPeriodo,
 			@RequestBody Inscripcion inscripcion){
 		try {
@@ -114,10 +117,12 @@ public class ServiciosEscolaresController {
 			if (!inscripcionActual.isPresent())
 				return ResponseEntity.notFound().build();
 			// Se llama el método para guardar el registro del repositorio JPA
-			return new ResponseEntity<Inscripcion>(service.save(idPeriodo, inscripcion), HttpStatus.OK);
+			String respuesta = inscripcionActual.get().getIdPeriodo() + ": " + inscripcionActual.get().getEstatus(); 
+			return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 		}catch(Exception e) {
 			// Se muestra el detalle del error
-			return new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+			//return new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("0: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}
