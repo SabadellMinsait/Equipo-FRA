@@ -59,7 +59,7 @@ public class AlumnoController {
 	 * @return Registro del alumno
 	 */
 	@GetMapping("/{numCuenta}")
-	public ResponseEntity<?> findById(@PathVariable Long numCuenta){
+	public ResponseEntity<Alumno> findById(@PathVariable Long numCuenta){
 		Optional<Alumno> alumno = service.findById(numCuenta);
 		if (!alumno.isPresent())
 			return ResponseEntity.notFound().build();
@@ -74,14 +74,19 @@ public class AlumnoController {
 	@PostMapping("/create")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Transactional
-	public ResponseEntity<?> create(
+	public ResponseEntity<String> create(
     		@RequestBody Alumno alumno){
 		try {
+			// Creamos el alumno
+			Alumno alumnoCreado = service.create(alumno);
+			// Armamos la respuesta 
+			String respuesta = alumnoCreado.getNumCuenta() + ": " + alumnoCreado.getNombre();
 			// Se llama el método para crear el registro del repositorio JPA
-		return new ResponseEntity<Alumno>(service.create(alumno), HttpStatus.CREATED);
+			
+		return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
 		}catch(Exception e) {
 			// Se muestra el detalle del error
-			return new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("0: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}
@@ -94,7 +99,7 @@ public class AlumnoController {
 	 */
 	@PutMapping("/{numCuenta}")
 	@Transactional
-	public ResponseEntity<?> update(
+	public ResponseEntity<String> update(
     		@PathVariable Long numCuenta,
 			@RequestBody Alumno alumno){
 		try {
@@ -104,10 +109,13 @@ public class AlumnoController {
 			if (!alumnoActual.isPresent())
 				return ResponseEntity.notFound().build();
 			// Se llama el método para guardar el registro del repositorio JPA
-			return new ResponseEntity<Alumno>(service.save(numCuenta, alumno), HttpStatus.OK);
+			Alumno alumnoCreado = service.create(alumno);
+			// Armamos la respuesta 
+			String respuesta = alumnoCreado.getNumCuenta() + ": " + alumnoCreado.getNombre();
+			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
 		}catch(Exception e) {
 			// Se muestra el detalle del error
-			return new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("0:" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}
