@@ -18,7 +18,7 @@ public interface StatusBibliotecaClient {
 
 	/**
 	 * Funci&#243;n para recuperar el estatus por n&#250;mero de cuenta
-	 * @param NumCuenta: N&#250;mero de cuenta del alumno
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
 	 * @return Registro del status del alumno en la biblioteca
 	 */
 	@GetMapping("/status/{numCuenta}")

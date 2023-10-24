@@ -19,4 +19,11 @@ public class StatusBiblioteca {
 	 * Descripci&#243;n del estatus del alumno
 	 */
 	String status; 
+	
+	/**
+	 * Creaci&#243;n de status en biblioteca vac&#237;o
+	 */
+	public StatusBiblioteca() {
+		
+	}
 }

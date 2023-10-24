@@ -19,4 +19,12 @@ public class Status {
 	 * Descripci&#243;n del estatus del alumno
 	 */
 	String status; 
+	
+	/**
+	 * Creaci&#243;n de una estructura de status vac&#237;o
+	 */
+	public Status() {
+		
+	}
+	
 }
