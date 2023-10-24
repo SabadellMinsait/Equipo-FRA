@@ -52,7 +52,7 @@ public class InscripcionServiceImpl implements InscripcionService{
 	
 	/**
 	 * Funci&#243;n para recuperar la inscrpci&#243;n por id periodo
-	 * @param Identificador del periodo
+	 * @param idPeriodo: Identificador del periodo
 	 * @return Registro de la inscripcii&#243;n
 	 */
 	@Override
@@ -79,7 +79,7 @@ public class InscripcionServiceImpl implements InscripcionService{
 
 	/** 
 	 * Validaci&#243;n del registro de inscripci&#243;n
-	 * @param Registro de la inscripci&#243;n a validar
+	 * @param inscripcion: Registro de la inscripci&#243;n a validar
 	 * @return Registro de la inscripci&#243;n
 	 */
 	public Inscripcion validaAlumno(Inscripcion inscripcion) {
@@ -103,7 +103,7 @@ public class InscripcionServiceImpl implements InscripcionService{
 	
 	/**
 	 * Funci&#243;n para registrar la inscrpci&#243;n de un alumno
-	 * @param Registro de la inscripci&#243;n a crear
+	 * @param inscripcion: Registro de la inscripci&#243;n a crear
 	 * @return Registro de la inscripci&#243;n
 	 */
 	@Override
@@ -134,8 +134,8 @@ public class InscripcionServiceImpl implements InscripcionService{
 
 	/**
 	 * Funci&#243;n para actualizar la inscrpci&#243;n de un alumno
-	 * @param Identificador del periodo
-	 * @param Registro de la inscripci&#243;n a actualizar
+	 * @param idPerdiodo: Identificador del periodo
+	 * @param inscripcion: Registro de la inscripci&#243;n a actualizar
 	 * @return Registro de la inscripci&#243;n
 	 */
 	@Override
@@ -146,4 +146,12 @@ public class InscripcionServiceImpl implements InscripcionService{
 		inscripcion.setIdPeriodo(idPerdiodo);
 		return repository.save(inscripcion);
 	}
+
+	/**
+	 * Creaci&#243;n de un InscripcionService vac&#237;o
+	 */
+	public InscripcionServiceImpl() {
+		
+	}
+	
 }

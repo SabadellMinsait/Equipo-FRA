@@ -18,19 +18,20 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/**
+ * Representaci&#243;n de un alumno
+ * @author 		fvelez
+ * @version     1
+ */
 @Entity
 @Table (name = "alumno")
 @Getter
 @Setter
-/**
- * Representaci&#243;n de un alumno
- * @author fvelez
- * @version 1.0
- */
 public class Alumno {
 
     /**
-     * Representaci&#243;n del numero de cuenta o identificaci&#243;n del alumno
+     * Representaci&#243;n del n&#250;mero de cuenta o identificaci&#243;n del alumno
      */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,9 +64,19 @@ public class Alumno {
 	@Column (name = "fecha_ingreso")
 	private Date fechaIngreso;
 	
+	/**
+	 * Representaci&#243;n de la lista de inscripciones del alumno
+	 */
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "num_cuenta")
 	@JsonIgnore
 	@Basic(optional=true)
 	private List<Inscripcion> inscripciones;
+	
+	/**
+	 * Creaci&#243;n de un alumno vac&#237;o
+	 */	
+	public Alumno() {
+		
+	}
 }

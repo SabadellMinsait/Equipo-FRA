@@ -15,15 +15,15 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Table (name = "inscripcion")
-@Getter
-@Setter
 /**
  * Representaci&#243;n de la inscrpci&#243;n anual de un alumno a la escuela
  * @author fvelez
  * @version 1.0
  */
+@Entity
+@Table (name = "inscripcion")
+@Getter
+@Setter
 public class Inscripcion {
 
     /**
@@ -59,4 +59,12 @@ public class Inscripcion {
      */
 	@Column (name = "estatus")
 	private String estatus;
+	
+	/**
+	 * Creaci&#243;n de una inscripci&#243;n vac&#237;a
+	 */
+	public Inscripcion() {
+		
+	}
+	
 }

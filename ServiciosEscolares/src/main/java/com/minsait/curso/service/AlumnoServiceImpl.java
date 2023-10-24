@@ -65,7 +65,8 @@ public class AlumnoServiceImpl implements AlumnoService {
 
 	/**
 	 * Funci&#243;n para guardar un alumno 
-	 * @param alumno: Registro del alumno
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
+	 * @param alumno: Registro del alumno a guardar
 	 * @return Registro del alumno guardado
 	 */
 	@Override
@@ -87,5 +88,11 @@ public class AlumnoServiceImpl implements AlumnoService {
 		
 	}
 
+	/**
+	 * Creaci&#243;n de un AlumnoService vac&#237;o
+	 */
+	public AlumnoServiceImpl() {
+		
+	}
 
 }

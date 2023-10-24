@@ -37,7 +37,7 @@ public class AlumnoController {
 	
 	/**
 	 * End point de bienvenida
-	 * @return 
+	 * @return Regresa un saludo a la API de alumnos 
 	 */
 	@GetMapping("/bienvenida")
 	public ResponseEntity<String> Bienvenida() {	
@@ -55,7 +55,7 @@ public class AlumnoController {
 
 	/**
 	 * Funci&#243;n para recuperar el alumno por n&#250;mero de cuenta
-	 * @param N&#250;mero de cuenta del alumno
+	 * @param numCuenta N&#250;mero de cuenta del alumno
 	 * @return Registro del alumno
 	 */
 	@GetMapping("/{numCuenta}")
@@ -93,7 +93,7 @@ public class AlumnoController {
 	
 	/**
 	 * Funci&#243;n para guardar un nuevo alumno 
-	 * @param numCuenta: Número de cuenta del alumno
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
 	 * @param alumno: Registro del alumno
 	 * @return Registro del alumno guardado
 	 */
@@ -120,6 +120,11 @@ public class AlumnoController {
 		
 	}
 	
+	/**
+	 * Funci&#243;n para borrar el registro del  alumno 
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
+	 * @return Respuesta correcta o Excepci&#243;n encontrada
+	 */
 	@DeleteMapping("/delete/{numCuenta}")
 	@ResponseStatus(HttpStatus.OK)
 	@Transactional
@@ -139,4 +144,10 @@ public class AlumnoController {
 		}
 	}
 
+	/**
+	 * Creaci&#243;n de un controlador de alumno vac&#237;o 
+	 */
+	public AlumnoController() {
+		
+	}
 }

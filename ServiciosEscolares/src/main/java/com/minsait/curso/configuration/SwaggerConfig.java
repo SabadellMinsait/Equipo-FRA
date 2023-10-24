@@ -44,4 +44,10 @@ public class SwaggerConfig {
 					.url("http://springdoc.org"));
 	}
 	
+	/**
+	 * Creaci&#243;n de la configuraci&#243;n de swagger vac&#237;a
+	 */
+	public SwaggerConfig() {
+		
+	}
 }

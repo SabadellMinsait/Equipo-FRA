@@ -33,7 +33,7 @@ public class ServiciosEscolaresController {
 	
 	/**
 	 * End point de bienvenida
-	 * @return 
+	 * @return Mensaje de bienvenida a la API de Servicios escolares 
 	 */
 	@GetMapping("/bienvenida")
 	public ResponseEntity<String> Bienvenida() {	
@@ -52,7 +52,7 @@ public class ServiciosEscolaresController {
 	
 	/**
 	 * Funci&#243;n para recuperar la inscrpci&#243;n por id periodo
-	 * @param Identificador del periodo
+	 * @param idPeriodo: Identificador del periodo
 	 * @return Registro de la inscripcii&#243;n
 	 */
 	@GetMapping("/{idPeriodo}")
@@ -65,7 +65,7 @@ public class ServiciosEscolaresController {
 
 	/**
 	 * Funci&#243;n para recuperar la inscrpci&#243;n por id periodo
-	 * @param Identificador del periodo
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
 	 * @return Registro de la inscripcii&#243;n
 	 */
 	@GetMapping("/byNumCuenta/{numCuenta}")
@@ -126,4 +126,12 @@ public class ServiciosEscolaresController {
 		}
 		
 	}
+	
+	/**
+	 * Creaci&#243;n de una aplicaci&#243;n de controlador de servicios escolares vac&#237;o
+	 */
+	public ServiciosEscolaresController() {
+		
+	}
+	
 }
