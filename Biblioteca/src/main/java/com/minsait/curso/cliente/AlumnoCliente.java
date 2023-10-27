@@ -12,7 +12,7 @@ import com.minsait.curso.model.entity.Alumno;
  * @author Rey Castro
  *
  */
-@FeignClient(value = "msvc-serviciosEscolares", url="http://localhost:8083/api/servicios/escolares/alumnos")
+@FeignClient(value = "msvc-serviciosEscolares", url="http://localhost:8082/api/servicios/escolares/alumnos")
 public interface AlumnoCliente {
 	
 	@GetMapping("/{numCuenta}")
