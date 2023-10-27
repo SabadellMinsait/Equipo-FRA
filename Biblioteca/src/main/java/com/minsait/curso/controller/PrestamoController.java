@@ -72,7 +72,7 @@ public class PrestamoController {
 			// Agragamos el prestamo
 			Prestamo prestamoCreado = service.create(prestamo);
 			// Armamos la respuesta 
-			String respuesta = prestamoCreado.getIdPrestamo() + ": " + prestamoCreado.getIdLibro();
+			String respuesta = prestamoCreado.getIdPrestamo() + ": " + prestamoCreado.getLibro().getIdLibro();
 			// Se llama el método para crear el registro del repositorio JPA
 			
 		return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
@@ -103,7 +103,7 @@ public class PrestamoController {
 			// Se llama el método para guardar el registro del repositorio JPA
 			Prestamo prestamoCreado = service.create(prestamo);
 			// Armamos la respuesta 
-			String respuesta = prestamoCreado.getIdPrestamo() + ": " + prestamoCreado.getIdLibro();
+			String respuesta = prestamoCreado.getIdPrestamo() + ": " + prestamoCreado.getLibro().getIdLibro();
 			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
 		}catch(Exception e) {
 			// Se muestra el detalle del error

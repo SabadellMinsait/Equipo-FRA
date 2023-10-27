@@ -49,7 +49,7 @@ public class Prestamo {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_libro")
     @Basic(optional=false)
-    private Libro idLibro;
+    private Libro libro;
     
     @Column (name="fecha_salida")
     private Date fechaSalida;

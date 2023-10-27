@@ -11,9 +11,14 @@ import org.springframework.util.Assert;
 
 import com.minsait.curso.cliente.AlumnoCliente;
 import com.minsait.curso.model.entity.Alumno;
+import com.minsait.curso.model.entity.Libro;
 import com.minsait.curso.model.entity.Prestamo;
 import com.minsait.curso.repository.PrestamoRepository;
 
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class PrestamoServiceImpl implements PrestamoService{
 
@@ -22,6 +27,9 @@ public class PrestamoServiceImpl implements PrestamoService{
 	
 	@Autowired
 	AlumnoCliente alumnoCliente;
+	
+	@Autowired
+	LibroService libroServices;
 	
 	@Override
 	public List<Prestamo> findAll() {
@@ -38,9 +46,15 @@ public class PrestamoServiceImpl implements PrestamoService{
 		// Valida que el parámetro no se nulo
 		Assert.notNull(prestamo, "El prestamo no puede ser nulo");
 		
-		ResponseEntity<Alumno> alumno = alumnoCliente.findById(prestamo.getNumCuenta());
+		ResponseEntity<Alumno> alumno = alumnoCliente.findById(prestamo.getNumCuenta());		
+		log.info("Alumno entrontrado: {}, status: {}", alumno.getBody(), alumno.getStatusCode());
 		
-		Assert.isTrue(alumno.getStatusCode()!= HttpStatus.OK, "El alumno no existe"); 
+		Optional<Libro> libro = libroServices.findById(prestamo.getLibro().getIdLibro());
+		
+		//log.info("Libro: {}", libro.get());
+		
+		Assert.isTrue(libro.isPresent(), "El libro no existe");
+		Assert.isTrue(alumno.getStatusCode()== HttpStatus.OK, "El alumno no existe"); 
 		
 		// Se valida si cuenta ya con numero de cuenta
 		if (prestamo.getIdPrestamo() != null) {
