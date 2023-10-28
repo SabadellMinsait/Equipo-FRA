@@ -4,12 +4,12 @@ Proyecto final Java-Escuela
 INTEGRANTES:
 
 1.-Castro San Agustin Rey
-2.-Velez Saldaña Fernando
+2.-Vélez Saldaña Fernando
 3.-Vences Martinez Alejandro Aldair
 
-DESCRIPCION:
+DESCRIPCIÓN:
 
-En este proyecto se han generado 3 subproyectos que a su vez, levantan una API de servicios rest pensadas para el usu diario de una escuela, los subproyectos son los siguientes:
+En este proyecto se han generado 3 subproyectos que a su vez, levantan una API de servicios rest pensadas para el uso diario de una escuela, para los siguientes departamentes:
 
  - Servicios Escolares
  - Biblioteca
@@ -21,19 +21,19 @@ Cada api cuenta con la configuración maven para poder obtener las versiones y d
 
 API Servicios Escolares:
 
-Esta API se encuenrta configurada para ejecutarse sobre el puerto 8082, y esta destinada para proveer de los servicios necesarios para gestionar tanto a los alumnos como a la inscripción a cada periodo:
- - Consulta, Crea, Actualiza y borra alumnos
+Esta API se encuentra configurada para ejecutarse sobre el puerto 8082, y está destinada para proveer de los servicios necesarios para gestionar tanto a los alumnos como a la inscripción en cada periodo:
+ - Consulta, Crea, Actualiza y Borra alumnos
  - Consulta si el alumno tienen adeudos desde biblioteca
- - Consulta, Crea, Actualiza y borra Inscripciones, validando que no tenga adeudos en la biblioteca
+ - Consulta, Crea, Actualiza y Borra Inscripciones, validando que no tenga adeudos en la biblioteca
  - Indica si el alumno esta inscrito en el periodo actual
 
-Para acceder a swagger sera ls siguiente liga: http://localhost:8082/swagger-ui/index.html#/
+Para acceder a swagger será la siguiente liga: http://localhost:8082/swagger-ui/index.html#/
 
 Para acceder a la documentación del código se podrá acceder mediante la ruta de instalación: [DIRECTORIO_INSTALACION]ServiciosEscolares\target\site\apidocs\index.html
 
 API Biblioteca
 
-Esta API se encuenrta configurada para ejecutarse sobre el puerto 8083, y esta destinada para proveer de los servicios necesarios para gestionar tanto los libros contenidos como a la préstamos realizados a los alumnos:
+Esta API se encuentra configurada para ejecutarse sobre el puerto 8083, y esta destinada para proveer de los servicios necesarios para gestionar tanto los libros contenidos como a la préstamos realizados a los alumnos:
  - Consulta, Crea, Actualiza y borra libros
  - Consulta el alumno desde servicios escolares
  - Consulta la inscripción desde servicios escolares
@@ -41,7 +41,7 @@ Esta API se encuenrta configurada para ejecutarse sobre el puerto 8083, y esta d
  - Registra la entrega de un libro
  - Indica si el alumno tiene adeudos
 
-Para acceder a swagger sera ls siguiente liga: http://localhost:8083/swagger-ui/index.html#/
+Para acceder a swagger será la siguiente liga: http://localhost:8083/swagger-ui/index.html#/
 
 Para acceder a la documentación del código se podrá acceder mediante la ruta de instalación: [DIRECTORIO_INSTALACION]Biblioteca\target\site\apidocs\index.html
 
@@ -56,15 +56,15 @@ Esta API se encuenrta configurada para ejecutarse sobre el puerto 8084, y esta d
  - Consulta, Crea, Actualiza y borra tiras de materia, validando que no tenga adeudos en la biblioteca y que este inscrito en el periodo actual
 
 
-Para acceder a swagger sera ls siguiente liga: http://localhost:8084/swagger-ui/index.html#/
+Para acceder a swagger será la siguiente liga: http://localhost:8084/swagger-ui/index.html#/
 
 Para acceder a la documentación del código se podrá acceder mediante la ruta de instalación: [DIRECTORIO_INSTALACION]Materias\target\site\apidocs\index.html
 
 REQUISITOS
 
-Para poder inicializar estos servicios es neceario contar con lo siguiente:
+Para poder inicializar estos servicios es necesario contar con lo siguiente:
  - Contar con la variable de ambiente JAVA_HOME con la ruta donde se tiene instalada la versión de java.
- - Contar con la variable de ambiente M2_HOME con la ruta donde se tiene instala da la versión de maven.
+ - Contar con la variable de ambiente M2_HOME con la ruta donde se tiene instalada la versión de maven.
  - Incluir las siguientes rutas a la variable de ambiente PATH:
     %JAVA_HOME$\bin
 	%M2_HOME%\bin
@@ -78,11 +78,11 @@ Para poder inicializar estos servicios es neceario contar con lo siguiente:
 INSTRUCCIONES DE DESCARGA
 
 Actualmente el proyecto se encuentra compartido en un proyecto de GIT, este se puede descargar mediante los siguientes pasos:
- - Establecer una ruta de instalción a la cual denominaremos DIRECTORIO_INSTALACION, por ejemplo %HOME%\git
+ - Establecer una ruta de instalación a la cual denominaremos DIRECTORIO_INSTALACION, por ejemplo %HOME%\git
  - Una vez posicionados en el DIRECTORIO_INSTALACION, se podrá descargar el proyecto con el siguiente comando de git:
 	git clone https://github.com/SabadellMinsait/Equipo-FRA.git
 
-COMPILACION Y DOCUMENTACION
+COMPILACION Y DOCUMENTACIÓN
 
 Para la generación de archivos de ejecución, se podrá realizar mediante los siguientes pasos:
 
@@ -95,7 +95,7 @@ Para la generación de archivos de ejecución, se podrá realizar mediante los s
 
 INICIALIZACIÓN DE LOS SERVICIOS
 
-Es importante mencionar que cada servcios depende de otro po lo que es necesario inicializar los servicios simultáneamente, para la inicialización simultánea de los 3 servicios se podrá realizar mediante las siguientes instrucciones:
+Es importante mencionar que cada servcios depende de otro por lo que es necesario inicializar los servicios simultáneamente, para la inicialización simultánea de los 3 servicios se podrá realizar mediante las siguientes instrucciones:
 
  - Posicionarse en el directorio del proyecto, mediante el siguiente comando:
     cd [DIRECTORIO_INSTALACION]\Equipo-FRA
@@ -106,9 +106,9 @@ Es importante mencionar que cada servcios depende de otro po lo que es necesario
  - Levantar el servicio de servicios escolares en segundo plano con la siguiente instrucción:
     start java -jar ServiciosEscolares/target/ServiciosEscolares-1.0-SNAPSHOT.jar
 
-COMANDOS BASICOS
+COMANDOS BÁSICOS
 
-Comandos basicos que se podran utilizar:
+Comandos básicos que se podran utilizar:
 
 * mvn –version:      Este comando nos ayuda a conocer la versión actual de Maven que está instalada
 * mvn clean:         Limpia el proyecto y elimina todos los archivos generados por la compilación anterior.
