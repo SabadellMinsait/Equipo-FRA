@@ -21,6 +21,6 @@ public interface InscripcionRepository extends JpaRepository<Inscripcion, Long>{
 	 * @param numCuenta: N&#250;mero de cuenta del alumno
 	 * @return Lista de inscripciones de un alumno
 	 */
-	@Query(value="SELECT * FROM inscripcion WHERE num_cuenta=:numCuenta ;", nativeQuery=true)
+	@Query(value="SELECT * FROM inscripcion WHERE num_cuenta=:numCuenta ORDER BY fecha_inicio DESC;", nativeQuery=true)
 	public List<Inscripcion> findByNumCuentaOrderByFechaIngresoDesc(Long numCuenta);
 }
