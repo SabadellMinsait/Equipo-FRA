@@ -20,7 +20,6 @@ import com.minsait.curso.model.entity.Libro;
 import com.minsait.curso.model.entity.Prestamo;
 import com.minsait.curso.repository.PrestamoRepository;
 
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -86,6 +85,7 @@ public class PrestamoServiceImpl implements PrestamoService{
 		
 		prestamo.setIdPeriodo(inscripcion.getBody().getIdPeriodo());
 		prestamo.setFechaSalida(fechaSys);
+		prestamo.setFechaEntrega(null);
 		
 		Assert.isTrue(libro.get().getDisponibles().compareTo(0) > 0, "No hay libros disponibles");
 		
