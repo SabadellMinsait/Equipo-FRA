@@ -40,8 +40,8 @@ public class LibroController {
 	 * @return lista de libros
 	 */
 	@GetMapping()
-	public List<Libro> findAll() {	
-		return service.findAll();
+	public ResponseEntity<String> findAll() {	
+		return new ResponseEntity<String>("callbackfn(" + service.findAll().toString() + ")", HttpStatus.OK);
 	}
 	
 	/**

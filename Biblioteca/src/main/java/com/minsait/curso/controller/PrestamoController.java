@@ -41,8 +41,8 @@ public class PrestamoController {
 	 * @return lista de prestamos
 	 */
 	@GetMapping()
-	public List<Prestamo> findAll() {	
-		return service.findAll();
+	public ResponseEntity<String> findAll() {	
+		return new ResponseEntity<String>("callbackfn(" + service.findAll().toString() + ")", HttpStatus.OK);
 	}
 	
 	/**
