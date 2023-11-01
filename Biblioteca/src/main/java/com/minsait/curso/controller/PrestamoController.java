@@ -143,4 +143,8 @@ public class PrestamoController {
 		
 	}
 
+	@GetMapping("/byNumCuenta/{numCuenta}")
+	public List<Prestamo> findByNumCuenta(@PathVariable Long numCuenta) {	
+		return service.findByNumCuenta(numCuenta);
+	}
 }

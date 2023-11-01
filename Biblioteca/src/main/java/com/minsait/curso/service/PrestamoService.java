@@ -42,5 +42,19 @@ public interface PrestamoService {
 	 * @param idPrestamo: Identificador del Prestamo
 	 */
 	public void delete(Long idPrestamo);
+	
+	/**
+	 * 
+	 * @param numCuenta
+	 * @return
+	 */
+	public List<Prestamo> findByNumCuenta(Long numCuenta);
+	
+	/**
+	 * 
+	 * @param numCuenta
+	 * @param idLibro
+	 */
+	public void retunBook(Long numCuenta, Long idLibro);
 
 }
