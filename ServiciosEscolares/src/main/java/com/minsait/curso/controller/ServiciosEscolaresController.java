@@ -45,9 +45,9 @@ public class ServiciosEscolaresController {
 	 * @return Lista de inscripciones
 	 */
 	@GetMapping
-	public List<Inscripcion> findAll(){
+	public ResponseEntity<List<Inscripcion>> findAll(){
 		// Obtenenmos la lista del servicio de inscripciones
-		return service.findAll();
+		return new ResponseEntity<>(service.findAll(), (HttpStatus.OK));
 	}
 	
 	/**
