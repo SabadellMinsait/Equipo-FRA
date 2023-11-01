@@ -82,7 +82,9 @@ public class Alumno {
 	public Alumno() {
 		
 	}
-	
+	/**
+	 * Convierte el alumno en formato JSon
+	 */
 	public String toString() {
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		

@@ -1,6 +1,5 @@
 package com.minsait.curso.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,9 +44,9 @@ public class ServiciosEscolaresController {
 	 * @return Lista de inscripciones
 	 */
 	@GetMapping
-	public ResponseEntity<List<Inscripcion>> findAll(){
+	public ResponseEntity<String> findAll(){
 		// Obtenenmos la lista del servicio de inscripciones
-		return new ResponseEntity<>(service.findAll(), (HttpStatus.OK));
+		return new ResponseEntity<String>("callbackfn(" + service.findAll().toString() + ")", HttpStatus.OK);
 	}
 	
 	/**
