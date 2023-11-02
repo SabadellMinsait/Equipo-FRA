@@ -1,7 +1,7 @@
 package com.minsait.curso.model.entity;
- 
+
 import lombok.Data;
- 
+
 /**
  * Representaci&#243;n del etatus de un alumno
  * @author fvelez
