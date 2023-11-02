@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -101,10 +102,10 @@ public class PrestamoController {
 			if (!prestamoActual.isPresent())
 				return ResponseEntity.notFound().build();
 			// Se llama el método para guardar el registro del repositorio JPA
-			Prestamo prestamoCreado = service.create(prestamo);
+			Prestamo prestamoCreado = service.save(idPrestamo, prestamo);
 			// Armamos la respuesta 
 			String respuesta = prestamoCreado.getIdPrestamo() + ": " + prestamoCreado.getLibro().getIdLibro();
-			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
+			return new ResponseEntity<String>(respuesta, HttpStatus.OK);
 		}catch(Exception e) {
 			// Se muestra el detalle del error
 			return new ResponseEntity<String>("0:" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -146,5 +147,25 @@ public class PrestamoController {
 	@GetMapping("/byNumCuenta/{numCuenta}")
 	public List<Prestamo> findByNumCuenta(@PathVariable Long numCuenta) {	
 		return service.findByNumCuenta(numCuenta);
+	}
+	
+	@PutMapping("/returnBook")
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<String> returnBook(@RequestParam Long numCuenta, @RequestParam Long idLibro) {
+		
+		String respuesta;
+		try {			
+			Optional<Prestamo> prestamo = service.returnBook(numCuenta, idLibro);
+			
+			if(prestamo.isPresent()) {
+				respuesta = prestamo.get().getIdPrestamo() + ": " + prestamo.get().getLibro().getIdLibro();
+			}else {
+				respuesta = "0 : Prestamo no encontrado"; 
+			}
+			return new ResponseEntity<String>(respuesta, HttpStatus.OK); 
+		}catch (Exception e) {
+			return new ResponseEntity<String>("0:" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		 
 	}
 }
