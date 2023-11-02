@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import com.minsait.curso.model.entity.Prestamo;
 import com.minsait.curso.model.entity.Status;
@@ -32,6 +33,9 @@ public class StatusServiceImpl implements StatusService {
 	 */
 	@Override
 	public Optional<Status> findByNumCuenta(Long numCuenta) {
+		
+		Assert.isTrue(numCuenta != null, "El numero de cuenta no puede ser nulo");
+		
 		// Creamos la estructura de estatus
 		Status status = new Status();
 		status.setNumCuenta(numCuenta);

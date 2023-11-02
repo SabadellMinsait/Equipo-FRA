@@ -51,10 +51,11 @@ public interface PrestamoService {
 	public List<Prestamo> findByNumCuenta(Long numCuenta);
 	
 	/**
-	 * 
+	 * Funcion para retornar los datos del libro
 	 * @param numCuenta
 	 * @param idLibro
+	 * @return
 	 */
-	public void retunBook(Long numCuenta, Long idLibro);
+	public Optional<Prestamo> returnBook(Long numCuenta, Long idLibro);
 
 }

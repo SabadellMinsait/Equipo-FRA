@@ -132,7 +132,7 @@ public class PrestamoServiceImpl implements PrestamoService{
 	}
 
 	@Override
-	public void retunBook(Long numCuenta, Long idLibro) {
+	public Optional<Prestamo> returnBook(Long numCuenta, Long idLibro) {
 		List<Prestamo> prestamos = findByNumCuenta(numCuenta);
 		Assert.isTrue(prestamos != null && prestamos.size() > 0, "El alumno no tiene prestamos pendientes");
 		
@@ -147,7 +147,9 @@ public class PrestamoServiceImpl implements PrestamoService{
 		libroSuma.setDisponibles(libroSuma.getDisponibles().intValue() + 1);
 		
 		libroServices.save(idLibro, libroSuma);
-	
+		
+		return Optional.of(resultado.get(0));  
+		
 	}
 
 }

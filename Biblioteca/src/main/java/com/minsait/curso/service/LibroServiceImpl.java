@@ -41,6 +41,7 @@ public class LibroServiceImpl implements LibroService{
 	public Libro create(Libro libro) {
 		// Valida que el parámetro no se nulo
 		Assert.notNull(libro, "El libro no puede ser nulo");
+		validaLibro(libro);
 		// Se valida si ya existe
 		if (libro.getIdLibro() != null) {
 			Optional<Libro> libroActual = findById(libro.getIdLibro());
@@ -55,6 +56,7 @@ public class LibroServiceImpl implements LibroService{
 	 */
 	@Override
 	public Libro save(Long idLibro, Libro libro) {
+		validaLibro(libro);
 		// Aseguramos que el numero de cuenta sea el mismo
 		libro.setIdLibro(idLibro);
 		// Se guarda el registro por el repositorio de JPA 
@@ -75,6 +77,12 @@ public class LibroServiceImpl implements LibroService{
 	 */
 	public LibroServiceImpl() {
 		
+	}
+	
+	public void validaLibro(Libro libro) {		
+		Assert.isTrue(libro.getTitulo() != null && !libro.getTitulo().equals(""), "El titulo no puede ser vacio");
+		Assert.isTrue(libro.getResumen() != null && !libro.getResumen().equals(""), "El Resumen no puede ser vacio");
+		Assert.isTrue(libro.getDisponibles() != null && !libro.getDisponibles().equals(""), "La disponibilidad no puede ser vacia");
 	}
 
 }
