@@ -1,5 +1,5 @@
 package com.minsait.curso.model.entity;
-
+ 
 import lombok.Data;
  
 /**
