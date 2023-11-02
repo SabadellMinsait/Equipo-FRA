@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import com.minsait.curso.model.entity.Materia;
 import com.minsait.curso.model.entity.Profesor;
 import com.minsait.curso.repository.ProfesorRepository;
 
@@ -55,6 +56,7 @@ public class ProfesorServiceImpl implements ProfesorService{
 	public Profesor create(Profesor profesor) {
 		// Valida que el parámetro no se nulo
 		Assert.notNull(profesor, "El profesor no puede ser nulo");
+		validaProfesor(profesor);
 		// Se valida si cuenta ya con numero de cuenta
 		if (profesor.getIdProfesor() != null) {
 			Optional<Profesor> alumnoActual = findById(profesor.getIdProfesor());
@@ -72,6 +74,7 @@ public class ProfesorServiceImpl implements ProfesorService{
 	 */
 	@Override
 	public Profesor save(Long idProfesor, Profesor profesor) {
+		validaProfesor(profesor);
 		// Aseguramos que el numero de identificacion sea el mismo
 		profesor.setIdProfesor(idProfesor);
 		// Se guarda el registro por el repositorio de JPA 
@@ -89,5 +92,11 @@ public class ProfesorServiceImpl implements ProfesorService{
 		
 	}
 
+	public void validaProfesor(Profesor profesor) {
+		Assert.isTrue(profesor.getNombre() !=null && !profesor.getNombre().equals(""), "El nombre del profesor no puede estar vacio");
+		Assert.isTrue(profesor.getEspecialidad() !=null && !profesor.getEspecialidad().equals(""), "La especialidad del profesor no puede estar vacio");
+		Assert.isTrue(profesor.getRfc() !=null && !profesor.getRfc().equals(""), "El RFC del profesor no puede estar vacio");
+		
+	}
 
 }

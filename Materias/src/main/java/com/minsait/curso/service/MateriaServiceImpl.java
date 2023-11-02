@@ -55,6 +55,7 @@ public class MateriaServiceImpl implements MateriaService {
 	public Materia create(Materia materia) {
 		// Valida que el parámetro no se nulo
 		Assert.notNull(materia, "La materia no puede ser nula");
+		validaMateria(materia);
 		// Se valida si cuenta ya con numero de cuenta
 		if (materia.getIdMateria() != null) {
 			Optional<Materia> materiaActual = findById(materia.getIdMateria() );
@@ -72,6 +73,8 @@ public class MateriaServiceImpl implements MateriaService {
 	 */
 	@Override
 	public Materia save(Long idMateria, Materia materia) {
+		
+		validaMateria(materia);
 		// Aseguramos que el numero de cuenta sea el mismo
 		materia.setIdMateria(idMateria);
 		// Se guarda el registro por el repositorio de JPA 
@@ -89,5 +92,9 @@ public class MateriaServiceImpl implements MateriaService {
 		
 	}
 
+	public void validaMateria(Materia materia) {
+		Assert.isTrue(materia.getNombre() !=null && !materia.getNombre().equals(""), "El nombre de la materia no puede estar vacio");
+		Assert.isTrue(materia.getResumen() !=null && !materia.getResumen().equals(""), "El resumen de la materia no puede estar vacio");
+	}
 
 }
