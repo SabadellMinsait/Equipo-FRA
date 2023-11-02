@@ -33,10 +33,14 @@ public class InscripcionServiceImpl implements InscripcionService{
 	 */
 	@Autowired
 	InscripcionRepository repository;
-	
+	/**
+	 * Propiedad repositorio de alumno
+	 */
 	@Autowired 
 	AlumnoService alumnoService;
-
+	/**
+	 * Propiedad repositorio de estatus de biblioteca del repositorio bibliotecaClient
+	 */
 	@Autowired
 	StatusBibliotecaClient statusBibliotecaClient; 
 	
