@@ -4,6 +4,9 @@ import java.sql.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -18,19 +21,20 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+
+/**
+ * Representaci&#243;n de un alumno
+ * @author 		fvelez
+ * @version     1
+ */
 @Entity
 @Table (name = "alumno")
 @Getter
 @Setter
-/**
- * Representaci&#243;n de un alumno
- * @author fvelez
- * @version 1.0
- */
 public class Alumno {
 
     /**
-     * Representaci&#243;n del numero de cuenta o identificaci&#243;n del alumno
+     * Representaci&#243;n del n&#250;mero de cuenta o identificaci&#243;n del alumno
      */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,9 +67,32 @@ public class Alumno {
 	@Column (name = "fecha_ingreso")
 	private Date fechaIngreso;
 	
+	/**
+	 * Representaci&#243;n de la lista de inscripciones del alumno
+	 */
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "num_cuenta")
 	@JsonIgnore
 	@Basic(optional=true)
 	private List<Inscripcion> inscripciones;
+	
+	/**
+	 * Creaci&#243;n de un alumno vac&#237;o
+	 */	
+	public Alumno() {
+		
+	}
+	/**
+	 * Convierte el alumno en formato JSon
+	 */
+	public String toString() {
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		
+		try {
+			return  ow.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			return "";
+		}
+	}
 }

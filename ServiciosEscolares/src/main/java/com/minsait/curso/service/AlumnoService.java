@@ -19,7 +19,7 @@ public interface AlumnoService {
 	
 	/**
 	 * Funci&#243;n para recuperar el detalle del alumno por numero de cuenta
-	 * @param numCuenta: Numero de cuenta del alumno
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
 	 * @return Registro del alumno
 	 */
 	public Optional<Alumno> findById(Long numCuenta);
@@ -33,7 +33,8 @@ public interface AlumnoService {
 	
 	/**
 	 * Funci&#243;n para guardar un alumno 
-	 * @param alumno: Registro del alumno
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
+	 * @param alumno: Registro del alumno a guardar
 	 * @return Registro del alumno guardado
 	 */
 	public Alumno save(Long numCuenta, Alumno alumno);
@@ -43,4 +44,5 @@ public interface AlumnoService {
 	 * @param numCuenta Numero de cuenta del alumno
 	 */
 	public void delete(Long numCuenta);
+	
 }

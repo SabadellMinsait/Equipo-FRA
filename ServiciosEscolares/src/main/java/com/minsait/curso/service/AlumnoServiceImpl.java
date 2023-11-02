@@ -1,5 +1,6 @@
 package com.minsait.curso.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,19 +60,24 @@ public class AlumnoServiceImpl implements AlumnoService {
 			Optional<Alumno> alumnoActual = findById(alumno.getNumCuenta());
 			Assert.isTrue(!alumnoActual.isPresent(), "El numero de cuenta ya existe");
 		}
+		// Validamos los campos del alumno
+		validaAlumno(alumno);
 		// Se guarda el registro por el repositorio de JPA 
 		return repository.save(alumno);
 	}
 
 	/**
 	 * Funci&#243;n para guardar un alumno 
-	 * @param alumno: Registro del alumno
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
+	 * @param alumno: Registro del alumno a guardar
 	 * @return Registro del alumno guardado
 	 */
 	@Override
 	public Alumno save(Long numCuenta, Alumno alumno) {
 		// Aseguramos que el numero de cuenta sea el mismo
 		alumno.setNumCuenta(numCuenta);
+		// Validamos los campos del alumno
+		validaAlumno(alumno);
 		// Se guarda el registro por el repositorio de JPA 
 		return repository.save(alumno);
 	}
@@ -87,5 +93,24 @@ public class AlumnoServiceImpl implements AlumnoService {
 		
 	}
 
-
+	/**
+	 * Creaci&#243;n de un AlumnoService vac&#237;o
+	 */
+	public AlumnoServiceImpl() {
+		
+	}
+	
+	/**
+	 * Valida la validaci&#243;n de un Alumno
+	 */
+	public void validaAlumno(Alumno alumno) {
+		Assert.isTrue(alumno.getNumCuenta() != null, "El numero de cuenta no puede ser nulo");
+		Assert.isTrue(alumno.getNombre() != null && !alumno.getNombre().equals(""), "El nombre del alumno no puede ser vacio");
+		Assert.isTrue(alumno.getApellidoPat() != null && !alumno.getApellidoPat().equals(""), "El apellido paterno del alumno no puede ser vacio");
+		if (alumno.getFechaIngreso() == null) {
+			Date fecha = new Date();
+			alumno.setFechaIngreso(new java.sql.Date(fecha.getTime()));
+		}
+	}
+	
 }

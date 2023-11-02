@@ -10,9 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import com.minsait.curso.client.StatusBibliotecaClient;
 import com.minsait.curso.model.entity.Alumno;
 import com.minsait.curso.model.entity.Inscripcion;
+import com.minsait.curso.model.entity.StatusBiblioteca;
 import com.minsait.curso.repository.InscripcionRepository;
+
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
  * Implementaci&#243;n de InscripcionService para interactuar con el repositorio de Inscripci&#243;n
@@ -20,6 +25,7 @@ import com.minsait.curso.repository.InscripcionRepository;
  * @version 1.0
  */
 @Service
+@Slf4j
 public class InscripcionServiceImpl implements InscripcionService{
 
 	/**
@@ -27,9 +33,16 @@ public class InscripcionServiceImpl implements InscripcionService{
 	 */
 	@Autowired
 	InscripcionRepository repository;
-	
+	/**
+	 * Propiedad repositorio de alumno
+	 */
 	@Autowired 
 	AlumnoService alumnoService;
+	/**
+	 * Propiedad repositorio de estatus de biblioteca del repositorio bibliotecaClient
+	 */
+	@Autowired
+	StatusBibliotecaClient statusBibliotecaClient; 
 	
 	/**
 	 * Funci&#243;n para recuperar la lista completa de inscrpciones registrados 
@@ -43,7 +56,7 @@ public class InscripcionServiceImpl implements InscripcionService{
 	
 	/**
 	 * Funci&#243;n para recuperar la inscrpci&#243;n por id periodo
-	 * @param Identificador del periodo
+	 * @param idPeriodo: Identificador del periodo
 	 * @return Registro de la inscripcii&#243;n
 	 */
 	@Override
@@ -61,30 +74,40 @@ public class InscripcionServiceImpl implements InscripcionService{
 	public Optional<Inscripcion> findByNumCuenta(Long numCuenta) {
 		// Obtenemos la lista de inscripciones del alumno
 		List<Inscripcion> inscripciones = repository.findByNumCuentaOrderByFechaIngresoDesc(numCuenta);
+		// Valida que tenga por lo menos un resultado
+		if (inscripciones.size() == 0)
+			return Optional.empty();
 		// Regresamos la última inscripcion 
 		return Optional.of(inscripciones.get(0));
 	}
 
 	/** 
 	 * Validaci&#243;n del registro de inscripci&#243;n
-	 * @param Registro de la inscripci&#243;n a validar
+	 * @param inscripcion: Registro de la inscripci&#243;n a validar
 	 * @return Registro de la inscripci&#243;n
 	 */
 	public Inscripcion validaAlumno(Inscripcion inscripcion) {
+		log.info("Entrando a la validación del alumno");
 		// Validamos que el alumno no sea vacio
 		Assert.notNull(inscripcion.getAlumno(), "El alumno no puede ser nulo");
 		// Validamos si el alumno existe
 		Optional<Alumno> alumno = alumnoService.findById(inscripcion.getAlumno().getNumCuenta());
+		log.info("Alumno recuperado: " + alumno);
 		Assert.isTrue(alumno.isPresent(), "El alumno no existe");
 		// Aseguramos que el alumno este correcto
 		inscripcion.setAlumno(alumno.get());
+		// Validamos el status de la bilbioteca
+		log.info("Recuperando el estatus de la biblioteca");
+		StatusBiblioteca statusBiblioteca = statusBibliotecaClient.findByNumcuenta(inscripcion.getAlumno().getNumCuenta()).getBody();
+		log.info("Estatus recuperado: " + statusBiblioteca);
+		Assert.isTrue(!statusBiblioteca.getStatus().equals("Con adeudo"), "El alumno tiene adeudos en la biblioteca");
 		// regresamos la inscripcion
 		return inscripcion;
 	}
 	
 	/**
 	 * Funci&#243;n para registrar la inscrpci&#243;n de un alumno
-	 * @param Registro de la inscripci&#243;n a crear
+	 * @param inscripcion: Registro de la inscripci&#243;n a crear
 	 * @return Registro de la inscripci&#243;n
 	 */
 	@Override
@@ -115,8 +138,8 @@ public class InscripcionServiceImpl implements InscripcionService{
 
 	/**
 	 * Funci&#243;n para actualizar la inscrpci&#243;n de un alumno
-	 * @param Identificador del periodo
-	 * @param Registro de la inscripci&#243;n a actualizar
+	 * @param idPerdiodo: Identificador del periodo
+	 * @param inscripcion: Registro de la inscripci&#243;n a actualizar
 	 * @return Registro de la inscripci&#243;n
 	 */
 	@Override
@@ -127,4 +150,12 @@ public class InscripcionServiceImpl implements InscripcionService{
 		inscripcion.setIdPeriodo(idPerdiodo);
 		return repository.save(inscripcion);
 	}
+
+	/**
+	 * Creaci&#243;n de un InscripcionService vac&#237;o
+	 */
+	public InscripcionServiceImpl() {
+		
+	}
+	
 }

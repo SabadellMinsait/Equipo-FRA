@@ -20,7 +20,7 @@ public interface InscripcionService {
 	
 	/**
 	 * Funci&#243;n para recuperar la inscrpciones registrados
-	 * @param Identificador del periodo
+	 * @param idPeriodo: Identificador del periodo
 	 * @return Registro de la inscripcii&#243;n
 	 */
 	public Optional<Inscripcion> findById(Long idPeriodo);
@@ -34,16 +34,18 @@ public interface InscripcionService {
 	
 	/**
 	 * Funci&#243;n para registrar la inscrpci&#243;n de un alumno
-	 * @param Registro de la inscripci&#243;n a crear
+	 * @param inscripcion: Registro de la inscripci&#243;n a crear
 	 * @return Registro de la inscripci&#243;n
 	 */
 	public Inscripcion create(Inscripcion inscripcion);
 	
 	/**
 	 * Funci&#243;n para actualizar la inscrpci&#243;n de un alumno
-	 * @param Identificador del periodo
-	 * @param Registro de la inscripci&#243;n a actualizar
+	 * @param idPerdiodo: Identificador del periodo
+	 * @param inscripcion: Registro de la inscripci&#243;n a actualizar
 	 * @return Registro de la inscripci&#243;n
 	 */
 	public Inscripcion save(Long idPerdiodo, Inscripcion inscripcion);
+	
+
 }

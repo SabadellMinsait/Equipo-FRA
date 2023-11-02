@@ -1,6 +1,5 @@
 package com.minsait.curso.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class AlumnoController {
 	
 	/**
 	 * End point de bienvenida
-	 * @return 
+	 * @return Regresa un saludo a la API de alumnos 
 	 */
 	@GetMapping("/bienvenida")
 	public ResponseEntity<String> Bienvenida() {	
@@ -49,17 +48,17 @@ public class AlumnoController {
 	 * @return Lista de alumnos
 	 */
 	@GetMapping()
-	public List<Alumno> findAll() {	
-		return service.findAll();
+	public ResponseEntity<String> findAll() {	
+		return new ResponseEntity<String>("callbackfn(" + service.findAll().toString() + ")", HttpStatus.OK);
 	}
 
 	/**
 	 * Funci&#243;n para recuperar el alumno por n&#250;mero de cuenta
-	 * @param N&#250;mero de cuenta del alumno
+	 * @param numCuenta N&#250;mero de cuenta del alumno
 	 * @return Registro del alumno
 	 */
 	@GetMapping("/{numCuenta}")
-	public ResponseEntity<?> findById(@PathVariable Long numCuenta){
+	public ResponseEntity<Alumno> findById(@PathVariable Long numCuenta){
 		Optional<Alumno> alumno = service.findById(numCuenta);
 		if (!alumno.isPresent())
 			return ResponseEntity.notFound().build();
@@ -74,27 +73,32 @@ public class AlumnoController {
 	@PostMapping("/create")
 	@ResponseStatus(HttpStatus.CREATED)
 	@Transactional
-	public ResponseEntity<?> create(
+	public ResponseEntity<String> create(
     		@RequestBody Alumno alumno){
 		try {
+			// Creamos el alumno
+			Alumno alumnoCreado = service.create(alumno);
+			// Armamos la respuesta 
+			String respuesta = alumnoCreado.getNumCuenta() + ": " + alumnoCreado.getNombre();
 			// Se llama el método para crear el registro del repositorio JPA
-		return new ResponseEntity<Alumno>(service.create(alumno), HttpStatus.CREATED);
+			
+		return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
 		}catch(Exception e) {
 			// Se muestra el detalle del error
-			return new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("0: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}
 	
 	/**
 	 * Funci&#243;n para guardar un nuevo alumno 
-	 * @param numCuenta: Número de cuenta del alumno
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
 	 * @param alumno: Registro del alumno
 	 * @return Registro del alumno guardado
 	 */
 	@PutMapping("/{numCuenta}")
 	@Transactional
-	public ResponseEntity<?> update(
+	public ResponseEntity<String> update(
     		@PathVariable Long numCuenta,
 			@RequestBody Alumno alumno){
 		try {
@@ -104,14 +108,22 @@ public class AlumnoController {
 			if (!alumnoActual.isPresent())
 				return ResponseEntity.notFound().build();
 			// Se llama el método para guardar el registro del repositorio JPA
-			return new ResponseEntity<Alumno>(service.save(numCuenta, alumno), HttpStatus.OK);
+			Alumno alumnoCreado = service.create(alumno);
+			// Armamos la respuesta 
+			String respuesta = alumnoCreado.getNumCuenta() + ": " + alumnoCreado.getNombre();
+			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
 		}catch(Exception e) {
 			// Se muestra el detalle del error
-			return new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<String>("0:" + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}
 	
+	/**
+	 * Funci&#243;n para borrar el registro del  alumno 
+	 * @param numCuenta: N&#250;mero de cuenta del alumno
+	 * @return Respuesta correcta o Excepci&#243;n encontrada
+	 */
 	@DeleteMapping("/delete/{numCuenta}")
 	@ResponseStatus(HttpStatus.OK)
 	@Transactional
@@ -131,4 +143,10 @@ public class AlumnoController {
 		}
 	}
 
+	/**
+	 * Creaci&#243;n de un controlador de alumno vac&#237;o 
+	 */
+	public AlumnoController() {
+		
+	}
 }
