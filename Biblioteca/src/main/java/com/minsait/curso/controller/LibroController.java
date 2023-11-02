@@ -1,6 +1,5 @@
 package com.minsait.curso.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +45,7 @@ public class LibroController {
 	
 	/**
 	 * Obtiene el libro seleccionado por el identificador
-	 * @param idLibro
+	 * @param idLibro identificador del Libro
 	 * @return Registro del libro
 	 */
 	@GetMapping("/{idLibro}")

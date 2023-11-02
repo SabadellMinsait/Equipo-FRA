@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.minsait.curso.model.entity.Prestamo;
 
 /**
- * 
+ * Representacion de prestamos, consulta los prestamos por numero de cuenta
  * @author Rey Castro
  *
  */
@@ -16,8 +16,8 @@ public interface PrestamoRepository extends JpaRepository<Prestamo, Long>{
 	
 	/**
 	 * 
-	 * @param numCuenta
-	 * @return
+	 * @param numCuenta identificador del alumno
+	 * @return la consulta del prestamo
 	 */
 	@Query(value="SELECT * FROM prestamo WHERE num_cuenta=:numCuenta ORDER BY fecha_salida ASC;", nativeQuery=true)
 	public List<Prestamo> findByNumCuentaOrderByFechaSalidaAsc(Long numCuenta);

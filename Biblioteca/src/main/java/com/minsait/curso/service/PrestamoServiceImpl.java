@@ -22,6 +22,11 @@ import com.minsait.curso.repository.PrestamoRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Es la implementacion de Prestamos, ABC del flujo de un prestamo
+ * @author Rey Castro
+ *
+ */
 @Slf4j
 @Service
 public class PrestamoServiceImpl implements PrestamoService{
@@ -38,16 +43,25 @@ public class PrestamoServiceImpl implements PrestamoService{
 	@Autowired
 	LibroService libroServices;
 	
+	/**
+	 * Metodo de busqueda general
+	 */
 	@Override
 	public List<Prestamo> findAll() {
 		return repository.findAll();
 	}
 
+	/**
+	 * Busqueda por identificador
+	 */
 	@Override
 	public Optional<Prestamo> findById(Long idPrestamo) {
 		return repository.findById(idPrestamo);
 	}
 
+	/**
+	 * Alta de un nuevo prestamo
+	 */
 	@Override
 	public Prestamo create(Prestamo prestamo) {
 		// Valida que el parámetro no se nulo
@@ -103,6 +117,9 @@ public class PrestamoServiceImpl implements PrestamoService{
 		return repository.save(prestamo);
 	}
 
+	/**
+	 * Guarda el registro del prestamo
+	 */
 	@Override
 	public Prestamo save(Long idPrestamo, Prestamo prestamo) {
 		// Aseguramos que el numero de cuenta sea el mismo
@@ -111,6 +128,9 @@ public class PrestamoServiceImpl implements PrestamoService{
 		return repository.save(prestamo);
 	}
 
+	/**
+	 * Borra un prestamo por identificador
+	 */
 	@Override
 	public void delete(Long idPrestamo) {
 		// Se guarda el registro por el repositorio de JPA 
@@ -125,12 +145,18 @@ public class PrestamoServiceImpl implements PrestamoService{
 		
 	}
 
+	/**
+	 * Bisqueda por numero de cuenta
+	 */
 	@Override
 	public List<Prestamo> findByNumCuenta(Long numCuenta) {
 		log.info("NumCuenta {}", numCuenta);
 		return repository.findByNumCuentaOrderByFechaSalidaAsc(numCuenta);
 	}
 
+	/**
+	 * Devuelve los lobros prestados, quita o agrega del biblioteca el libro
+	 */
 	@Override
 	public Optional<Prestamo> returnBook(Long numCuenta, Long idLibro) {
 		List<Prestamo> prestamos = findByNumCuenta(numCuenta);
