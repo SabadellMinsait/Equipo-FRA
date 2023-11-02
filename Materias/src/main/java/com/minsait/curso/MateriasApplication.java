@@ -2,13 +2,14 @@ package com.minsait.curso;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * Representaci&#243;n de la aplicaci&#243;n principal de Materias
  * @author fvelez
  * @version 1.0
  */
-
+@EnableFeignClients
 @SpringBootApplication
 public class MateriasApplication {
 
