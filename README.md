@@ -1,5 +1,5 @@
 # Equipo-FRA
-Proyecto final Java-Escuela
+Proyecto final Java-Escuela 
 
 ## INTEGRANTES:
 

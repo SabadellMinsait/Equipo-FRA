@@ -12,7 +12,7 @@ import com.minsait.curso.model.entity.Prestamo;
 import com.minsait.curso.model.entity.Status;
 
 
-/**
+/** 
  * Interfaz para interactuar con el repositorio del status Alumno
  * @author fvelez
  * @version 1.0
