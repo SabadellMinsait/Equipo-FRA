@@ -1,0 +1,15 @@
+insert into alumno (nombre, apellido_pat, apellido_mat, domiclio, fecha_ingreso) values ('Rey Alberto','Castro','San Agustin','domicilio 2','2023-08-18');
+insert into alumno (nombre, apellido_pat, apellido_mat, domiclio, fecha_ingreso) values ('Ernesto','Morales','Ramos','domicilio 3','2023-08-18');
+insert into alumno (nombre, apellido_pat, apellido_mat, domiclio, fecha_ingreso) values ('Juan Carlos','Tovar','Rosas','domicilio 4','2023-08-18');
+insert into alumno (nombre, apellido_pat, apellido_mat, domiclio, fecha_ingreso) values ('Alejandro Aldair','Vences','Martinez','domicilio 5','2023-08-18');
+insert into alumno (nombre, apellido_pat, apellido_mat, domiclio, fecha_ingreso) values ('Fernando ','Vélez','Saldaña','domicilio 6','2023-08-18');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (1,'2023-08-18','2023-10-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (2,'2023-08-18','2023-10-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (3,'2023-08-18','2023-10-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (4,'2023-08-18','2023-10-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (5,'2023-08-18','2023-10-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (1,'2023-10-18','2023-12-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (2,'2023-10-18','2023-12-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (3,'2023-10-18','2023-12-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (4,'2023-10-18','2023-12-18','Inscrito');
+insert into inscripcion (num_cuenta, fecha_inicio, fecha_final, estatus) values (5,'2023-10-18','2023-12-18','Inscrito');
