@@ -3,6 +3,11 @@ package com.minsait.curso.model.entity;
 import java.sql.Date;
 import lombok.Data;
 
+/**
+ * Representacion del etatus de un alumno
+ * @author Rey Castro
+ * Campos de alumno
+ */
 @Data
 public class Alumno {
 	

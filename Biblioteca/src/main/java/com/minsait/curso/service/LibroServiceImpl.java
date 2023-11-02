@@ -79,6 +79,10 @@ public class LibroServiceImpl implements LibroService{
 		
 	}
 	
+	/**
+	 * Metodo que valida si los campos no son nulos
+	 * @param libro campos del libro
+	 */
 	public void validaLibro(Libro libro) {		
 		Assert.isTrue(libro.getTitulo() != null && !libro.getTitulo().equals(""), "El titulo no puede ser vacio");
 		Assert.isTrue(libro.getResumen() != null && !libro.getResumen().equals(""), "El Resumen no puede ser vacio");

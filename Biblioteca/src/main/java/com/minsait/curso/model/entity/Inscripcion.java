@@ -4,6 +4,11 @@ import java.sql.Date;
 
 import lombok.Data;
 
+/**
+ * Representacion del etatus de inscripcion
+ * @author Rey Castro
+ *
+ */
 @Data
 public class Inscripcion {
 	

@@ -12,6 +12,10 @@ import com.minsait.curso.model.entity.Libro;
  */
 public interface LibroService {
 
+	/**
+	 * Funcion de la busqueda general
+	 * @return la consulta del libro buscado
+	 */
 	public List<Libro> findAll();
 	
 	/**
@@ -23,7 +27,7 @@ public interface LibroService {
 	
 	/**
 	 * Funcion para guardar un nuevo Libro 
-	 * @param Libro: Registro del Libro
+	 * @param libro: Registro del Libro
 	 * @return Registro del Libro guardado
 	 */
 	public Libro create(Libro libro);
@@ -31,7 +35,7 @@ public interface LibroService {
 	/**
 	 * Funcion para guardar un Libro 
 	 * @param idLibro: Identificador del Libro
-	 * @param Libro: Registro del Libro a guardar
+	 * @param libro: Registro del Libro a guardar
 	 * @return Registro del Libro guardado
 	 */
 	public Libro save(Long idLibro, Libro libro);

@@ -23,7 +23,7 @@ import com.minsait.curso.service.PrestamoService;
 
 
 /**
- * 
+ * Representación para acceder al repositorio de Prestamos escolares
  * @author Rey Castro
  *
  */
@@ -48,7 +48,7 @@ public class PrestamoController {
 	
 	/**
 	 * Obtiene el prestamo seleccionado por el identificador
-	 * @param idPrestamo
+	 * @param idPrestamo identificador del prestamo
 	 * @return Registro del prestamo
 	 */
 	@GetMapping("/{idPrestamo}")
@@ -115,7 +115,7 @@ public class PrestamoController {
 	
 	/**
 	 * Borra el registro de un prestamo
-	 * @param idLibro: identificador del prestamo
+	 * @param idPrestamo: identificador del prestamo
 	 * @return Respuesta correcta o Excepcion en caso de haber algun error
 	 */
 	@DeleteMapping("/delete/{idPrestamo}")
@@ -144,11 +144,22 @@ public class PrestamoController {
 		
 	}
 
+	/**
+	 * Funcion de busqueda por numero de cuenta
+	 * @param numCuenta identificador de numero de cuenta
+	 * @return la busqueda por numero de cuenta
+	 */
 	@GetMapping("/byNumCuenta/{numCuenta}")
 	public List<Prestamo> findByNumCuenta(@PathVariable Long numCuenta) {	
 		return service.findByNumCuenta(numCuenta);
 	}
 	
+	/**
+	 * Metodo que regresa el prestamos buscado
+	 * @param numCuenta identificador del numero de cuenta del alumno
+	 * @param idLibro identificador del libro
+	 * @return la consulta del prestamos, si es existente
+	 */
 	@PutMapping("/returnBook")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<String> returnBook(@RequestParam Long numCuenta, @RequestParam Long idLibro) {

@@ -7,12 +7,16 @@ import com.minsait.curso.model.entity.Prestamo;
 
 
 /**
- * 
+ * Servicio de Prestamos, contiene los metodos ABC para el flujo de prestamos
  * @author Rey Castro
  *
  */
 public interface PrestamoService {
 	
+	/**
+	 * Funcion de busqueda general del prestamo
+	 * @return el registro de los prestamos
+	 */
 	public List<Prestamo> findAll();
 	
 	/**
@@ -24,7 +28,7 @@ public interface PrestamoService {
 	
 	/**
 	 * Funcion para guardar un nuevo Prestamo 
-	 * @param Libro: Registro del Prestamo
+	 * @param prestamo: Registro del Prestamo
 	 * @return Registro del Prestamo guardado
 	 */
 	public Prestamo create(Prestamo prestamo);
@@ -32,7 +36,7 @@ public interface PrestamoService {
 	/**
 	 * Funcion para guardar un Prestamo 
 	 * @param idPrestamo: Identificador del Prestamo
-	 * @param Prestamo: Registro del Prestamo a guardar
+	 * @param prestamo: Registro del Prestamo a guardar
 	 * @return Registro del Prestamo guardado
 	 */
 	public Prestamo save(Long idPrestamo, Prestamo prestamo);
@@ -45,16 +49,16 @@ public interface PrestamoService {
 	
 	/**
 	 * 
-	 * @param numCuenta
-	 * @return
+	 * @param numCuenta identificador del alumno
+	 * @return la busqueda completa
 	 */
 	public List<Prestamo> findByNumCuenta(Long numCuenta);
 	
 	/**
 	 * Funcion para retornar los datos del libro
-	 * @param numCuenta
-	 * @param idLibro
-	 * @return
+	 * @param numCuenta identificador del alumno
+	 * @param idLibro identificador del libro
+	 * @return el prestamo
 	 */
 	public Optional<Prestamo> returnBook(Long numCuenta, Long idLibro);
 
