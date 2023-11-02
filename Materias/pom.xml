@@ -8,10 +8,10 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>Biblioteca</artifactId>
+	<artifactId>Materias</artifactId>
 	
-	<name>Biblioteca</name>
-	<description>Biblioteca</description>
+	<name>Materias</name>
+	<description>Materias</description>
 
 	<dependencies>
 		<dependency>
@@ -36,6 +36,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 
 </project>
