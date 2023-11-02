@@ -8,11 +8,10 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>Biblioteca</artifactId>
-	
-	<name>Biblioteca</name>
-	<description>Biblioteca</description>
-
+	<artifactId>ServiciosEscolares</artifactId>
+		
+	<name>ServiciosEscolares</name>
+	<description>Servicios escolares</description>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -36,6 +35,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
 
 </project>
