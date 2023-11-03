@@ -108,7 +108,7 @@ public class ProfesorController {
 			if (!profesorActual.isPresent())
 				return ResponseEntity.notFound().build();
 			// Se llama el método para guardar el registro del repositorio JPA
-			Profesor profesorCreado = service.create(profesor);
+			Profesor profesorCreado = service.save(idProfesor, profesor);
 			// Armamos la respuesta 
 			String respuesta = profesor.getIdProfesor() + ": " + profesorCreado.getNombre();
 			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);

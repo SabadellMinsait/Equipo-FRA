@@ -91,7 +91,7 @@ public class TiraMateriasController {
 			if (!TiraMateriaActual.isPresent())
 				return ResponseEntity.notFound().build();
 			// Se llama el método para guardar el registro del repositorio JPA
-			TiraMaterias TiraMateriaCreado = service.create(tiraMaterias);
+			TiraMaterias TiraMateriaCreado = service.save(idInsMateria, tiraMaterias);
 			// Armamos la respuesta 
 			String respuesta = TiraMateriaCreado.getIdInsMateria() + ": " + TiraMateriaCreado.getGrupo();
 			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
