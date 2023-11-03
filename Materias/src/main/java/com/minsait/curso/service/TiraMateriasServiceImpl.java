@@ -1,7 +1,6 @@
 package com.minsait.curso.service;
 
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -169,4 +168,10 @@ public class TiraMateriasServiceImpl implements TiraMateriasService{
 		return repository.save(tiraMaterias);
 	}
 
+	/**
+     * Funci&#243;n para generar un registro vacio de TiraMateriasServiceImpl
+     */
+	public TiraMateriasServiceImpl() {
+        
+    }	
 }

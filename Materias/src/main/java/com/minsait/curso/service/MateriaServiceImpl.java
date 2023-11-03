@@ -91,10 +91,19 @@ public class MateriaServiceImpl implements MateriaService {
 		repository.deleteById(idMateria);
 		
 	}
-
+	/**
+	 * Funci&#243;n para validar la materia este correcta
+	 * @param materia Registro de materia
+	 */
 	public void validaMateria(Materia materia) {
 		Assert.isTrue(materia.getNombre() !=null && !materia.getNombre().equals(""), "El nombre de la materia no puede estar vacio");
 		Assert.isTrue(materia.getResumen() !=null && !materia.getResumen().equals(""), "El resumen de la materia no puede estar vacio");
 	}
 
+	/**
+     * Funci&#243;n para generar un registro vacio de Materia Service Impl
+     */
+	public MateriaServiceImpl() {
+        
+    }
 }
