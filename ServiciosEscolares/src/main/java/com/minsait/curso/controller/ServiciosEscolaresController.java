@@ -115,6 +115,8 @@ public class ServiciosEscolaresController {
 			// En caso de que no se encontro el alumno se regresa un not found
 			if (!inscripcionActual.isPresent())
 				return ResponseEntity.notFound().build();
+			 //Se guardan los cambios
+			service.save(idPeriodo, inscripcion);
 			// Se llama el método para guardar el registro del repositorio JPA
 			String respuesta = inscripcionActual.get().getIdPeriodo() + ": " + inscripcionActual.get().getEstatus(); 
 			return new ResponseEntity<String>(respuesta, HttpStatus.OK);

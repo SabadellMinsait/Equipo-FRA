@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +18,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minsait.curso.model.entity.Alumno;
+import com.minsait.curso.model.entity.Inscripcion;
 import com.minsait.curso.service.AlumnoService;
+import com.minsait.curso.service.InscripcionService;
 
 /**
  * Representaci&#243;n del controlador principal para los alumnos
@@ -33,6 +36,9 @@ public class AlumnoController {
 	 */
 	@Autowired
 	AlumnoService service;
+	
+	@Autowired
+	InscripcionService inscripcionService;
 	
 	/**
 	 * End point de bienvenida
@@ -108,7 +114,7 @@ public class AlumnoController {
 			if (!alumnoActual.isPresent())
 				return ResponseEntity.notFound().build();
 			// Se llama el método para guardar el registro del repositorio JPA
-			Alumno alumnoCreado = service.create(alumno);
+			Alumno alumnoCreado = service.save(numCuenta, alumno);
 			// Armamos la respuesta 
 			String respuesta = alumnoCreado.getNumCuenta() + ": " + alumnoCreado.getNombre();
 			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
@@ -134,6 +140,9 @@ public class AlumnoController {
 			// En caso de que no se encontro el alumno se regresa un not found
 			if (!alumnoActual.isPresent())
 				return ResponseEntity.notFound().build();
+			// Vaidamos que no tenga inscripciones
+			Optional<Inscripcion> inscripcion = inscripcionService.findByNumCuenta(numCuenta);
+			Assert.isTrue(!inscripcion.isPresent(), "El alumno tiene inscripciones asociadas");
 			// Se llama el borrado del repositorio JPA
 			service.delete(numCuenta);
 			// Regresamos el resultado como correcto
