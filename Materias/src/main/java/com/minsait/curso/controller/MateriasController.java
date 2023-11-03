@@ -1,6 +1,5 @@
 package com.minsait.curso.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,8 +49,8 @@ public class MateriasController {
 	 * @return Lista de materias
 	 */
 	@GetMapping()
-	public List<Materia> findAll() {	
-		return service.findAll();
+	public ResponseEntity<String> findAll() {	
+		return new ResponseEntity<String>("callbackfn(" + service.findAll().toString() + ")", HttpStatus.OK);
 	}
 
 	/**
@@ -144,4 +143,11 @@ public class MateriasController {
 			return new ResponseEntity<Exception>(e, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	/**
+     * Funci&#243;n para generar un registro vacio de materias controller
+     */
+	public MateriasController() {
+        
+    }
 }

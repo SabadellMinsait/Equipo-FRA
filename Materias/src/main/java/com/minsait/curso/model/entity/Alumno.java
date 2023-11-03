@@ -39,5 +39,12 @@ public class Alumno {
      */
 	private Date fechaIngreso;
 
+	/**
+     * Funci&#243;n para generar un registro vacio de alumno
+     */
+	public Alumno() {
+        
+    }
+	
 
 }

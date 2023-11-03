@@ -15,7 +15,7 @@ import com.minsait.curso.model.entity.Prestamo;
 public interface PrestamoRepository extends JpaRepository<Prestamo, Long>{
 	
 	/**
-	 * 
+	 * Recupera la lista de prestamos por numero de cuenta del alumno
 	 * @param numCuenta identificador del alumno
 	 * @return la consulta del prestamo
 	 */
