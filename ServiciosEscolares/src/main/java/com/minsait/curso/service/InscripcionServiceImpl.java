@@ -86,7 +86,7 @@ public class InscripcionServiceImpl implements InscripcionService{
 	 * @param inscripcion: Registro de la inscripci&#243;n a validar
 	 * @return Registro de la inscripci&#243;n
 	 */
-	public Inscripcion validaAlumno(Inscripcion inscripcion) {
+	public Inscripcion validaInscripcion(Inscripcion inscripcion) {
 		log.info("Entrando a la validación del alumno");
 		// Validamos que el alumno no sea vacio
 		Assert.notNull(inscripcion.getAlumno(), "El alumno no puede ser nulo");
@@ -120,7 +120,7 @@ public class InscripcionServiceImpl implements InscripcionService{
 			Assert.isTrue(!periodoActual.isPresent(), "El id perdiodo ya existe");
 		}
 		// Validamos el alumno
-		inscripcion = validaAlumno(inscripcion);
+		inscripcion = validaInscripcion(inscripcion);
 		// Validamos las fechas
 		Assert.notNull(inscripcion.getFechaInicio(), "Fecha inicio no puede ser nula");
 		Assert.notNull(inscripcion.getFechaFinal(), "Fecha final no puede ser nula");
@@ -145,7 +145,7 @@ public class InscripcionServiceImpl implements InscripcionService{
 	@Override
 	public Inscripcion save(Long idPerdiodo, Inscripcion inscripcion) {
 		// Validamos el alumno
-		inscripcion = validaAlumno(inscripcion);
+		inscripcion = validaInscripcion(inscripcion);
 		// Aseguramos que el id periodo sea el mismo
 		inscripcion.setIdPeriodo(idPerdiodo);
 		return repository.save(inscripcion);
