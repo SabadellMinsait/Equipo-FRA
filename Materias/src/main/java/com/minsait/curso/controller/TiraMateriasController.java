@@ -1,6 +1,5 @@
 package com.minsait.curso.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +45,8 @@ public class TiraMateriasController {
 	 * @return Lista de profesores
 	 */
 	@GetMapping("")
-	public List<TiraMaterias> findAll(){		
-		return service.findAll();
+	public ResponseEntity<String> findAll() {	
+		return new ResponseEntity<String>("callbackfn(" + service.findAll().toString() + ")", HttpStatus.OK);
 	}
 	
 	/**
@@ -102,4 +101,11 @@ public class TiraMateriasController {
 		}
 		
 	}
+	
+	/**
+     * Funci&#243;n para generar un registro vacio de TiraMateriasController
+     */
+	public TiraMateriasController() {
+        
+    }	
 }

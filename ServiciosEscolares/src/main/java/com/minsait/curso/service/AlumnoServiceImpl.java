@@ -102,6 +102,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 	
 	/**
 	 * Valida la validaci&#243;n de un Alumno
+	 * @param alumno Registro del alumno
 	 */
 	public void validaAlumno(Alumno alumno) {
 		Assert.isTrue(alumno.getNumCuenta() != null, "El numero de cuenta no puede ser nulo");

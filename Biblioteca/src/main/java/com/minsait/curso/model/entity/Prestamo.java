@@ -79,4 +79,10 @@ public class Prestamo {
 		}
 	}
 
+	/**
+     * Funci&#243;n para generar un registro vacio de Prestamo
+     */
+	public Prestamo() {
+        
+    }	
 }

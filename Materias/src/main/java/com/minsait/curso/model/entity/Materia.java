@@ -3,6 +3,9 @@ package com.minsait.curso.model.entity;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
@@ -27,8 +30,6 @@ import lombok.Setter;
 @Table (name = "materia")
 @Getter
 @Setter
-
-
 public class Materia {
 	
 	/**
@@ -51,10 +52,33 @@ public class Materia {
 	@Column (name = "resumen")
 	private String resumen;
 	
+	/**
+	 * Representaci&#243;n de la lista de tiras de la materia asociadas
+	 */
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_materia")
 	@JsonIgnore
 	@Basic(optional=true)
-
 	private List<TiraMaterias> tiraMateria;
+
+	/**
+	 * Convierte el materia en formato JSon
+	 */
+	public String toString() {
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		
+		try {
+			return  ow.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			return "";
+		}
+	}
+
+	/**
+     * Funci&#243;n para generar un registro vacio de materia
+     */
+	public Materia() {
+        
+    }
 }

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import com.minsait.curso.model.entity.Materia;
 import com.minsait.curso.model.entity.Profesor;
 import com.minsait.curso.repository.ProfesorRepository;
 
@@ -92,6 +91,10 @@ public class ProfesorServiceImpl implements ProfesorService{
 		
 	}
 
+	/**
+	 * Validaci&#243;n que el profesor sea correcta
+	 * @param profesor Registro del profesor
+	 */
 	public void validaProfesor(Profesor profesor) {
 		Assert.isTrue(profesor.getNombre() !=null && !profesor.getNombre().equals(""), "El nombre del profesor no puede estar vacio");
 		Assert.isTrue(profesor.getEspecialidad() !=null && !profesor.getEspecialidad().equals(""), "La especialidad del profesor no puede estar vacio");
@@ -99,4 +102,10 @@ public class ProfesorServiceImpl implements ProfesorService{
 		
 	}
 
+	/**
+     * Funci&#243;n para generar un registro vacio de profesor services implementation
+     */
+	public ProfesorServiceImpl() {
+        
+    }
 }
