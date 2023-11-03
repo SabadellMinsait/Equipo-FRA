@@ -11,12 +11,15 @@ import org.springframework.util.Assert;
 import com.minsait.curso.model.entity.Alumno;
 import com.minsait.curso.repository.AlumnoRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Implementaci&#243;n de AlumnoService para interactuar con el repositorio de Alumno
  * @author fvelez
  * @version 1.0
  */
 @Service
+@Slf4j
 public class AlumnoServiceImpl implements AlumnoService {
 	
 	/**
@@ -24,6 +27,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 	 */
 	@Autowired
 	private AlumnoRepository repository;
+
 	
 	/**
 	 * Funci&#243;n para recuperar la lista completa de alumnos registrados 
@@ -55,6 +59,7 @@ public class AlumnoServiceImpl implements AlumnoService {
 	public Alumno create(Alumno alumno) {
 		// Valida que el parámetro no se nulo
 		Assert.notNull(alumno, "El alumno no puede ser nulo");
+		log.info("Alumno: " + alumno);
 		// Se valida si cuenta ya con numero de cuenta
 		if (alumno.getNumCuenta() != null) {
 			Optional<Alumno> alumnoActual = findById(alumno.getNumCuenta());
