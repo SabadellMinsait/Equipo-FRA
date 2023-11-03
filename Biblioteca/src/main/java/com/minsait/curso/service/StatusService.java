@@ -1,5 +1,5 @@
 package com.minsait.curso.service;
- 
+
 import java.util.Optional;
 
 import com.minsait.curso.model.entity.Status;
@@ -7,7 +7,7 @@ import com.minsait.curso.model.entity.Status;
 /**
  * Interfaz para interactuar con el repositorio de Status
  * @author fvelez
- * @version 1.0 
+ * @version 1.0
  */
 public interface StatusService {
 
