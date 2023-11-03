@@ -109,7 +109,7 @@ public class MateriasController {
 			if (!materiaActual.isPresent())
 				return ResponseEntity.notFound().build();
 			// Se llama el método para guardar el registro del repositorio JPA
-			Materia materiaCreada = service.create(materia);
+			Materia materiaCreada = service.save(idMateria, materia);
 			// Armamos la respuesta 
 			String respuesta = materiaCreada.getIdMateria() + ": " + materiaCreada.getNombre();
 			return new ResponseEntity<String>(respuesta, HttpStatus.CREATED);
