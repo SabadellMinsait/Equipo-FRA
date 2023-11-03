@@ -1,5 +1,9 @@
 package com.minsait.curso.model.entity;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -73,5 +77,26 @@ public class TiraMaterias {
 	/** Dia en que toca la materia **/
 	@Column (name = "dia_semana")
 	private String diaSemana;
+
+	/**
+	 * Convierte la tira de paterias en formato JSon
+	 */
+	public String toString() {
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		
+		try {
+			return  ow.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			return "";
+		}
+	}
 	
+	/**
+     * Funci&#243;n para generar un registro vacio de TiraMaterias
+     */
+	public TiraMaterias() {
+        
+    }	
+
 }

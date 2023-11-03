@@ -77,5 +77,11 @@ public class Libro {
 		}
 	}
     
+	/**
+     * Funci&#243;n para generar un registro vacio de Libro
+     */
+	public Libro() {
+        
+    }	
     
 }

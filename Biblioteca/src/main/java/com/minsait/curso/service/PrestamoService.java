@@ -48,7 +48,7 @@ public interface PrestamoService {
 	public void delete(Long idPrestamo);
 	
 	/**
-	 * 
+	 * Recupera la lista de prestamos por numero de cuenta del alumno
 	 * @param numCuenta identificador del alumno
 	 * @return la busqueda completa
 	 */

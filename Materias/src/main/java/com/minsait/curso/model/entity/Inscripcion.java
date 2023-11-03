@@ -37,5 +37,10 @@ public class Inscripcion {
      * Representaci&#243;n del estatus de la inscripci&#243;n: Pendiente, Finalizada o Baja
      */
 	private String estatus;
-
+	/**
+     * Funci&#243;n para generar un registro vacio de inscripci&#243;n
+     */
+	public Inscripcion() {
+        
+    }
 }
